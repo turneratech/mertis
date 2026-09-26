@@ -1,0 +1,162 @@
+# .github/workflows/validate-commits.yml
+#
+# Validates commit message format:
+#   First line must start with: <BUG-ID>: <description>
+#   Somewhere in the commit message (any line) must contain: - Author: <name>
+#
+# Examples (valid):
+#   WD-0003: fix legend size
+#
+#   - some extra notes
+#   - more notes
+#   - Author: abhishek.m
+#
+#   GRN-0005: improved light theme palette - Author: abhishek.m
+#
+# Notes:
+# - BUG-ID format is flexible: 2-10 uppercase letters, dash, 1-6 digits (e.g., WD-2, WD-0002, GRN-000005)
+# - Author line is case-insensitive and whitespace-tolerant
+
+name: Validate Commit Messages
+
+on:
+  push:
+    branches: [ main, master, develop, 'bugfix/**', 'feature/**' ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  validate-commits:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for commit validation
+
+      - name: Validate commit messages
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          echo "========================================"
+          echo "  Mertis Commit Validation"
+          echo "========================================"
+          echo ""
+
+          # Determine commit range
+          COMMITS=""
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+            COMMITS="$(git rev-list "${BASE_SHA}..${HEAD_SHA}")"
+          else
+            BASE_SHA="${{ github.event.before }}"
+            HEAD_SHA="${{ github.event.after }}"
+
+            # Handle new branch (all zeros)
+            if [ "${BASE_SHA}" = "0000000000000000000000000000000000000000" ]; then
+              # New branch push: validate commits reachable from HEAD.
+              # If there is a previous commit, validate just the range HEAD~1..HEAD,
+              # else validate all commits (first commit scenario).
+              if git rev-parse HEAD~1 >/dev/null 2>&1; then
+                COMMITS="$(git rev-list "HEAD~1..HEAD")"
+              else
+                COMMITS="$(git rev-list HEAD)"
+              fi
+            else
+              COMMITS="$(git rev-list "${BASE_SHA}..${HEAD_SHA}")"
+            fi
+          fi
+
+          # If for some reason COMMITS is empty, fall back safely
+          if [ -z "${COMMITS}" ]; then
+            echo "No commits detected in range; nothing to validate."
+            exit 0
+          fi
+
+          # Patterns
+          # 1) First line must start with BUG-ID then colon:
+          #    e.g., WD-0003: something
+          BUG_FIRSTLINE_REGEX='^[A-Z]{2,10}-[0-9]{1,6}:[[:space:]]+.+$'
+
+          # 2) Author line may appear anywhere (any line), case-insensitive:
+          #    e.g., - Author: abhishek.m
+          #    allow variable whitespace and any non-empty author value.
+          AUTHOR_ANYLINE_REGEX='^[[:space:]]*-[[:space:]]*Author:[[:space:]]+.+$'
+
+          all_valid=true
+          invalid_count=0
+          valid_count=0
+
+          for commit in ${COMMITS}; do
+            # Full message; strip CR to avoid Windows CRLF issues
+            message="$(git log --format=%B -n 1 "${commit}" | tr -d '\r')"
+            short_sha="$(echo "${commit}" | cut -c1-7)"
+            first_line="$(printf '%s' "${message}" | head -n 1)"
+
+            # Skip merge commits
+            if printf '%s' "${first_line}" | grep -qE '^Merge'; then
+              echo "⊘ ${short_sha} - Merge commit (skipped)"
+              continue
+            fi
+
+            # Check BUG-ID on first line
+            has_bug_firstline=false
+            if printf '%s' "${first_line}" | grep -qE -- "${BUG_FIRSTLINE_REGEX}"; then
+              has_bug_firstline=true
+            fi
+
+            # Check Author anywhere in message (multi-line support)
+            has_author_anywhere=false
+            if printf '%s\n' "${message}" | grep -qiE -- "${AUTHOR_ANYLINE_REGEX}"; then
+              has_author_anywhere=true
+            fi
+
+            if [ "${has_bug_firstline}" = true ] && [ "${has_author_anywhere}" = true ]; then
+              bug_id="$(printf '%s' "${first_line}" | grep -oE -- '^[A-Z]{2,10}-[0-9]{1,6}' | head -1)"
+              echo "✓ ${short_sha} - ${bug_id}"
+              valid_count=$((valid_count + 1))
+            else
+              all_valid=false
+              invalid_count=$((invalid_count + 1))
+              echo "✗ ${short_sha} - \"${first_line}\""
+
+              if [ "${has_bug_firstline}" = false ]; then
+                echo "  → First line must start with BUG-ID and colon (e.g., WD-0003: <desc>)"
+              fi
+
+              if [ "${has_author_anywhere}" = false ]; then
+                echo "  → Missing author line anywhere in message (e.g., - Author: abhishek.m)"
+              fi
+              echo ""
+            fi
+          done
+
+          echo ""
+          echo "========================================"
+          echo "  Summary: ${valid_count} valid, ${invalid_count} invalid"
+          echo "========================================"
+          echo ""
+
+          if [ "${all_valid}" = false ]; then
+            echo "❌ VALIDATION FAILED"
+            echo ""
+            echo "Required format:"
+            echo "  First line: <BUG-ID>: <description>"
+            echo "  Somewhere in message: - Author: <name>"
+            echo ""
+            echo "Examples:"
+            echo "  WD-0003: fix the legend size"
+            echo ""
+            echo "  Details about the change..."
+            echo "  - Author: abhishek.m"
+            echo ""
+            echo "  GRN-0005: improved palette - Author: abhishek.m"
+            echo ""
+            exit 1
+          fi
+
+          echo "✅ All commits validated successfully!"

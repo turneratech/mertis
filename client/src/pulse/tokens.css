@@ -1,0 +1,109 @@
+/*
+ * Pulse design tokens.
+ *
+ * Pulse is not a second design system — it is a visual *language* (ranks, rings,
+ * altitude, the Line) built on the Mertis dark slate. But it had no scale of its
+ * own: 12 ad-hoc font sizes, 19 ad-hoc spacings and four competing radii, which
+ * is why every metric rendered as the same grey box.
+ *
+ * The accent language is taken from the Pulse mark itself (assets/logo.svg) and
+ * kept in step with the marketing page (website/pulse.html) so the app and the ad
+ * look like the same product.
+ *
+ * Scoped to .pulse-scope so nothing here can leak into the tracker's chrome.
+ */
+
+/* .pulse-strip is the deep-link chrome inside the tracker's own pages, which
+   sits outside the Pulse shell but still speaks the same language. */
+.pulse-scope,
+.pulse-strip {
+  /* --- Brand ------------------------------------------------------------- */
+  --p-acc: #2fda95;          /* the mark's core green */
+  --p-acc-bright: #56e9ab;   /* the mark's highlight */
+  --p-acc-deep: #1ba873;
+  --p-sky: #3dbfb9;          /* the mark's lower echo */
+  --p-violet: #a78bff;       /* the mark's tip */
+
+  /* --- Signal ------------------------------------------------------------ */
+  --p-danger: #ef4444;
+  --p-danger-dim: rgba(239, 68, 68, 0.14);
+  --p-warn: #f59e0b;
+  --p-warn-dim: rgba(245, 158, 11, 0.13);
+  --p-ok: var(--p-acc);
+  --p-ok-dim: rgba(47, 218, 149, 0.13);
+
+  /* --- Surfaces ---------------------------------------------------------- */
+  --p-bg: var(--bg-primary, #0f172a);
+  --p-surface: #17223a;
+  --p-surface-2: #1e2c48;
+  --p-surface-3: #26375a;
+  --p-border: #2e3f5f;
+  --p-border-strong: #3d5175;
+
+  /* --- Text: three ranks, never opacity --------------------------------- */
+  --p-text: #f1f5f9;
+  --p-text-dim: #a9b8ce;
+  --p-text-mute: #7e8ea6;
+
+  /* --- Type scale -------------------------------------------------------- */
+  --p-fs-xs: 0.6875rem;
+  --p-fs-sm: 0.8125rem;
+  --p-fs-md: 0.9375rem;
+  --p-fs-lg: 1.125rem;
+  --p-fs-xl: 1.5rem;
+  --p-fs-2xl: 2rem;
+  --p-lh-tight: 1.25;
+  --p-lh: 1.5;
+  --p-track-caps: 0.06em;
+
+  /* --- Spacing scale ----------------------------------------------------- */
+  --p-1: 0.25rem;
+  --p-2: 0.5rem;
+  --p-3: 0.75rem;
+  --p-4: 1rem;
+  --p-5: 1.5rem;
+  --p-6: 2rem;
+  --p-7: 3rem;
+
+  /* --- Radius ------------------------------------------------------------ */
+  --p-r-sm: 6px;
+  --p-r-md: 10px;
+  --p-r-lg: 14px;
+  --p-r-full: 999px;
+
+  /* --- Elevation --------------------------------------------------------- */
+  --p-e-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --p-e-2: 0 4px 14px rgba(0, 0, 0, 0.35);
+  --p-e-3: 0 14px 38px rgba(0, 0, 0, 0.48);
+
+  /* --- Motion: state changes only, never decoration ---------------------- */
+  --p-dur-fast: 110ms;
+  --p-dur: 200ms;
+  --p-dur-slow: 460ms;
+  --p-ease: cubic-bezier(0.2, 0.7, 0.3, 1);
+
+  /* --- Focus ------------------------------------------------------------- */
+  --p-focus: 0 0 0 2px var(--p-bg), 0 0 0 4px var(--p-acc);
+}
+
+/* One focus treatment for the whole module. There was none before. */
+.pulse-scope :focus-visible {
+  outline: none;
+  box-shadow: var(--p-focus);
+  border-radius: var(--p-r-sm);
+}
+
+/*
+ * Motion is opt-in per element via --p-dur. Turning it off here disables every
+ * transition and animation in Pulse at once, including the ring sweep and the
+ * card settle.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .pulse-scope,
+  .pulse-scope * {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}

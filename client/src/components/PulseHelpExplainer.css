@@ -1,0 +1,76 @@
+.pulse-explainer h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin: 0 0 8px;
+}
+
+.pulse-explainer > p {
+  color: #94a3b8;
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+.pulse-explainer-scroll {
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+}
+
+.pulse-explainer table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.pulse-explainer th,
+.pulse-explainer td {
+  text-align: left;
+  vertical-align: top;
+  padding: 8px 10px;
+  border-bottom: 1px solid #334155;
+  color: #94a3b8;
+}
+
+.pulse-explainer thead th {
+  color: #cbd5e1;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pulse-explainer tbody th {
+  color: #e2e8f0;
+  font-weight: 600;
+  white-space: normal;
+  width: 11rem;
+}
+
+.pulse-explainer-note {
+  color: #64748b;
+  font-size: 13px;
+  margin: 0;
+}
+
+.pulse-explainer-flow {
+  margin: 0 0 1.15rem;
+}
+
+.pulse-explainer-flow h4 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e2e8f0;
+}
+
+.pulse-explainer-flow ol {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #94a3b8;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.pulse-explainer-flow li {
+  margin-bottom: 0.4rem;
+}

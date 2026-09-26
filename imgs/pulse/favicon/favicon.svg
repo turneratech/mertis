@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="512" height="512"><defs>
+<linearGradient id="tileFill" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#2F3B3D"/>
+  <stop offset="0.3" stop-color="#1B2325"/>
+  <stop offset="0.55" stop-color="#0B1211"/>
+  <stop offset="1" stop-color="#050B09"/>
+</linearGradient>
+<linearGradient id="tileRim" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#8A9597"/>
+  <stop offset="0.5" stop-color="#465050"/>
+  <stop offset="1" stop-color="#0E1614"/>
+</linearGradient>
+<linearGradient id="gMain" gradientUnits="userSpaceOnUse" x1="87.1" y1="0" x2="934.6" y2="0">
+  <stop offset="0" stop-color="#56E9AB"/><stop offset="1" stop-color="#2FDA95"/>
+</linearGradient>
+<linearGradient id="gTip" gradientUnits="userSpaceOnUse" x1="0" y1="115.9" x2="0" y2="215.6">
+  <stop offset="0" stop-color="#A78BFF" stop-opacity="1"/><stop offset="0.35" stop-color="#A78BFF" stop-opacity="0.75"/>
+  <stop offset="1" stop-color="#A78BFF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="gBot" gradientUnits="userSpaceOnUse" x1="0" y1="675.6" x2="0" y2="833.7">
+  <stop offset="0" stop-color="#3DBFB9" stop-opacity="0"/><stop offset="1" stop-color="#3DBFB9" stop-opacity="0.95"/>
+</linearGradient>
+<linearGradient id="gEcho" gradientUnits="userSpaceOnUse" x1="0" y1="395.6" x2="0" y2="856.3">
+  <stop offset="0" stop-color="#3C8F8B" stop-opacity="0.75"/>
+  <stop offset="0.4" stop-color="#3AA6A2" stop-opacity="0.5"/>
+  <stop offset="0.75" stop-color="#3AB0AC" stop-opacity="0.85"/>
+  <stop offset="1" stop-color="#3DBFB9" stop-opacity="1"/>
+</linearGradient></defs><rect width="1024" height="1024" rx="171.0" fill="url(#tileFill)"/><g><polyline points="115.09,507.38 297.62,507.38 363.16,808.53 503.92,143.94 582.15,507.38 906.60,507.38" fill="none" stroke="url(#gMain)" stroke-width="56.04" stroke-linecap="round" stroke-linejoin="round"/><polyline points="115.09,507.38 297.62,507.38 363.16,808.53 503.92,143.94 582.15,507.38 906.60,507.38" fill="none" stroke="url(#gTip)" stroke-width="56.04" stroke-linecap="round" stroke-linejoin="round"/><polyline points="115.09,507.38 297.62,507.38 363.16,808.53 503.92,143.94 582.15,507.38 906.60,507.38" fill="none" stroke="url(#gBot)" stroke-width="56.04" stroke-linecap="round" stroke-linejoin="round"/></g></svg>

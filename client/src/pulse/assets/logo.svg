@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024"><title>Logo</title><defs>
+<linearGradient id="tileFill" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#2F3B3D"/>
+  <stop offset="0.3" stop-color="#1B2325"/>
+  <stop offset="0.55" stop-color="#0B1211"/>
+  <stop offset="1" stop-color="#050B09"/>
+</linearGradient>
+<linearGradient id="tileRim" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#8A9597"/>
+  <stop offset="0.5" stop-color="#465050"/>
+  <stop offset="1" stop-color="#0E1614"/>
+</linearGradient>
+<linearGradient id="gMain" gradientUnits="userSpaceOnUse" x1="140.1" y1="0" x2="881.8" y2="0">
+  <stop offset="0" stop-color="#56E9AB"/><stop offset="1" stop-color="#2FDA95"/>
+</linearGradient>
+<linearGradient id="gTip" gradientUnits="userSpaceOnUse" x1="0" y1="165.9" x2="0" y2="254.9">
+  <stop offset="0" stop-color="#A78BFF" stop-opacity="1"/><stop offset="0.35" stop-color="#A78BFF" stop-opacity="0.75"/>
+  <stop offset="1" stop-color="#A78BFF" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="gBot" gradientUnits="userSpaceOnUse" x1="0" y1="658.1" x2="0" y2="792.5">
+  <stop offset="0" stop-color="#3DBFB9" stop-opacity="0"/><stop offset="1" stop-color="#3DBFB9" stop-opacity="0.95"/>
+</linearGradient>
+<linearGradient id="gEcho" gradientUnits="userSpaceOnUse" x1="0" y1="395.6" x2="0" y2="845.8">
+  <stop offset="0" stop-color="#3C8F8B" stop-opacity="0.75"/>
+  <stop offset="0.4" stop-color="#3AA6A2" stop-opacity="0.5"/>
+  <stop offset="0.75" stop-color="#3AB0AC" stop-opacity="0.85"/>
+  <stop offset="1" stop-color="#3DBFB9" stop-opacity="1"/>
+</linearGradient><filter id="glow" x="-25%" y="-25%" width="150%" height="150%" color-interpolation-filters="sRGB">
+  <feGaussianBlur in="SourceGraphic" stdDeviation="30" result="b1"/>
+  <feComponentTransfer in="b1" result="g1"><feFuncA type="linear" slope="0.42"/></feComponentTransfer>
+  <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="b2"/>
+  <feComponentTransfer in="b2" result="g2"><feFuncA type="linear" slope="0.3"/></feComponentTransfer>
+  <feMerge><feMergeNode in="g1"/><feMergeNode in="g2"/><feMergeNode in="SourceGraphic"/></feMerge>
+</filter><clipPath id="clip"><rect width="1024" height="1024" rx="171.0"/></clipPath></defs><g clip-path="url(#clip)"><rect width="1024" height="1024" fill="url(#tileFill)"/><g filter="url(#glow)"><polyline points="160.71,547.23 329.66,547.23 391.47,828.27 506.85,395.59 556.30,547.23 865.35,547.23" fill="none" stroke="url(#gEcho)" stroke-width="35.03" stroke-linecap="round" stroke-linejoin="round"/><polyline points="157.62,507.88 320.59,507.88 379.11,776.76 504.79,183.37 574.64,507.88 864.32,507.88" fill="none" stroke="url(#gMain)" stroke-width="35.03" stroke-linecap="round" stroke-linejoin="round"/><polyline points="157.62,507.88 320.59,507.88 379.11,776.76 504.79,183.37 574.64,507.88 864.32,507.88" fill="none" stroke="url(#gTip)" stroke-width="35.03" stroke-linecap="round" stroke-linejoin="round"/><polyline points="157.62,507.88 320.59,507.88 379.11,776.76 504.79,183.37 574.64,507.88 864.32,507.88" fill="none" stroke="url(#gBot)" stroke-width="35.03" stroke-linecap="round" stroke-linejoin="round"/></g></g><rect x="2.5" y="2.5" width="1019" height="1019" rx="168.5" fill="none" stroke="url(#tileRim)" stroke-width="5"/></svg>

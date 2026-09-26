@@ -1,0 +1,67 @@
+# Mertis — self-hosted, with MySQL.
+#
+#   cp .env.example .env     # set JWT_SECRET and DB_PASSWORD at minimum
+#   docker compose up -d
+#   open http://localhost:5000/mertis
+#
+# The named volumes are not optional. mertis-data holds instanceId, which the
+# licence server binds your key to; losing it means re-activating the licence.
+
+services:
+  db:
+    image: mysql:8
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-mantis}
+      MYSQL_USER: ${DB_USER:-mantis}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?set DB_ROOT_PASSWORD in .env}
+    volumes:
+      - mertis-db:/var/lib/mysql
+      # *.sql here run once, in filename order, on an empty data directory.
+      - ./server/database/mantis.sql:/docker-entrypoint-initdb.d/01-mantis.sql:ro
+      - ./server/database/license_schema.sql:/docker-entrypoint-initdb.d/02-license.sql:ro
+      - ./server/database/deployment_schema.sql:/docker-entrypoint-initdb.d/03-deployment.sql:ro
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-p${DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+
+  mertis:
+    build: .
+    # Tag the artifact so a release can be exported and shipped privately:
+    #   MERTIS_VERSION=$(node -p "require('./package.json').version") \n    #     docker compose build && docker save mertis:$MERTIS_VERSION | gzip > mertis-$MERTIS_VERSION.tar.gz
+    # Defaults to the released version; override with MERTIS_VERSION so the tag
+    # follows package.json rather than drifting from it.
+    image: mertis:${MERTIS_VERSION:-2.0.0}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_PROVIDER: mysql
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-mantis}
+      DB_USER: ${DB_USER:-mantis}
+      DB_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in .env}
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-${JWT_SECRET}}
+      DEFAULT_STORAGE: ${DEFAULT_STORAGE:-local}
+      # Only needed if you are not using the key pinned in license.config.js.
+      LICENSE_PUBLIC_KEY: ${LICENSE_PUBLIC_KEY:-}
+      LICENSE_SERVER_URL: ${LICENSE_SERVER_URL:-https://license.turneratech.com}
+      CORS_ORIGIN: ${CORS_ORIGIN:-}
+    ports:
+      - "${PORT:-5000}:5000"
+    volumes:
+      - mertis-data:/app/server/data
+      - mertis-uploads:/app/uploads
+
+volumes:
+  mertis-db:
+  mertis-data:
+  mertis-uploads:

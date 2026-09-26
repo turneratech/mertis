@@ -1,0 +1,46 @@
+{
+  "name": "mertis",
+  "version": "2.0.0",
+  "description": "Mertis — Multi-Project Bug Tracking with MySQL/CSV dual storage",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server/index.js",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build",
+    "install-all": "npm install && cd client && npm install",
+    "db:init": "mysql -u root -p < server/database/mantis.sql",
+    "test": "node --test --test-concurrency=1 \"server/tests/unit/**/*.test.js\" \"server/tests/integration/**/*.test.js\"",
+    "test:unit": "node --test \"server/tests/unit/**/*.test.js\"",
+    "test:integration": "node --test --test-concurrency=1 \"server/tests/integration/**/*.test.js\"",
+    "verify": "node scripts/verify.js",
+    "package": "node scripts/package.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^2.0.2",
+    "mysql2": "^3.6.5",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^8.0.7",
+    "openai": "^6.16.0",
+    "pdfkit": "^0.17.2",
+    "pg": "^8.21.0",
+    "tree-node-cli": "^1.6.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "nodemon": "^3.0.2"
+  },
+  "license": "BUSL-1.1",
+  "engines": {
+    "node": ">=24"
+  }
+}

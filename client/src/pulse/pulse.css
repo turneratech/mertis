@@ -1,0 +1,1790 @@
+@import './tokens.css';
+
+.pulse-project-aka {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-secondary);
+  font-size: 0.72em;
+}
+
+.page-title .pulse-mark,
+.pulse-mark {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  vertical-align: -6px;
+  margin-right: 0.45rem;
+  border-radius: 7px;
+}
+
+.pulse-lede {
+  color: var(--text-secondary);
+  margin: 0 0 1.25rem;
+  max-width: 52rem;
+}
+
+.pulse-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.pulse-tabs button {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.pulse-tabs button.on {
+  color: var(--text-primary);
+  border-color: var(--success);
+}
+
+.pulse-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: 0.75rem;
+  align-items: start;
+  overflow-x: auto;
+}
+
+.pulse-column {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-height: 16rem;
+}
+
+.pulse-column-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.7rem 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pulse-column.bottleneck {
+  border-color: var(--warning);
+}
+
+.pulse-dwell-chip {
+  flex: 1 0 100%;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  text-decoration: none;
+  cursor: help;
+}
+
+.pulse-column-head h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.pulse-column-head span {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.pulse-column-body {
+  padding: 0.65rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pulse-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 8px;
+  padding: 0.65rem 0.7rem;
+  cursor: grab;
+}
+
+.pulse-card.sev-critical { border-left-color: var(--danger); }
+.pulse-card.sev-high { border-left-color: var(--warning); }
+.pulse-card.sev-medium { border-left-color: var(--primary); }
+.pulse-card.sev-low { border-left-color: var(--secondary); }
+
+.pulse-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.35rem;
+}
+
+.pulse-id {
+  font-family: ui-monospace, monospace;
+  font-size: 0.75rem;
+  color: var(--success);
+  text-decoration: none;
+}
+
+.pulse-card-title {
+  font-size: 0.88rem;
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.pulse-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.pulse-pip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  background: var(--bg-input);
+  border-radius: 999px;
+  padding: 0.12rem 0.5rem;
+}
+
+.pulse-pip.muted,
+.pulse-clock.muted,
+.pulse-muted {
+  color: var(--text-secondary);
+}
+
+.pulse-pip-role {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
+.pulse-pip-extra {
+  color: var(--warning);
+  font-weight: 700;
+}
+
+.pulse-clock {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.pulse-env,
+.pulse-type,
+.pulse-gravity {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--warning);
+}
+
+.pulse-toast,
+.pulse-degraded,
+.pulse-help {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.pulse-toast { border-color: var(--danger); color: var(--text-primary); }
+
+.pulse-pit-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.pulse-pit-list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.75rem;
+  align-items: start;
+  padding: 0.4rem;
+  border-radius: 10px;
+}
+
+.pulse-pit-list li.selected {
+  outline: 1px solid var(--success);
+}
+
+.pulse-me-section {
+  margin-bottom: 1.5rem;
+}
+
+.pulse-me-section h3 {
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+  margin-bottom: 0.7rem;
+}
+
+.pulse-me-section h3 span {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.pulse-me-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 0.75rem;
+}
+
+.pulse-mini-link {
+  display: inline-block;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.pulse-project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.85rem;
+}
+
+.pulse-project-tile {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.pulse-deck-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: 0.85rem;
+}
+
+.pulse-deck-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.pulse-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin: 0.5rem 0 1rem;
+}
+
+.pulse-strip a {
+  color: var(--success);
+}
+
+.pulse-tax {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+}
+
+.pulse-andon {
+  border-color: var(--danger);
+}
+
+.pulse-tax span {
+  display: block;
+  margin-top: 0.25rem;
+  font-weight: 500;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.pulse-interrupt {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.9rem;
+  font-weight: 600;
+}
+
+.pulse-interrupt.overflow {
+  border-color: var(--danger);
+}
+
+.pulse-interrupt p {
+  margin: 0;
+}
+
+.pulse-interrupt-meta {
+  display: block;
+  margin-top: 0.35rem;
+  font-weight: 500;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.pulse-interrupt-bar {
+  display: flex;
+  height: 0.55rem;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.55rem;
+  background: var(--bg-input);
+}
+
+.pulse-interrupt-bar .planned { background: var(--success); }
+.pulse-interrupt-bar .reserved { background: var(--warning); }
+.pulse-interrupt-bar .overflow { background: var(--danger); }
+
+.pulse-line {
+  margin-bottom: 1rem;
+}
+
+.pulse-line-banner {
+  background: var(--bg-secondary);
+  border: 1px solid var(--warning);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin-bottom: 0.55rem;
+  font-weight: 600;
+}
+
+.pulse-line-banner.muted {
+  border-color: var(--border);
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.pulse-line-bands {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+.pulse-line-band {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.45rem 0.55rem;
+  min-width: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.pulse-line-band.bottleneck {
+  border-color: var(--warning);
+}
+
+.pulse-line-band span {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
+.pulse-line-band strong {
+  font-size: 0.9rem;
+}
+
+.pulse-line-band em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+}
+
+.pulse-brief-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: var(--p-3);
+  margin-top: var(--p-4);
+}
+
+.pulse-brief-list > .pulse-inst {
+  margin-bottom: 0;
+}
+
+.pulse-brief-headline {
+  margin-top: var(--p-5);
+}
+
+.pulse-mission-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0 0 1.25rem;
+}
+
+.pulse-mission-form input {
+  flex: 1 1 14rem;
+  min-height: 2.25rem;
+}
+
+.pulse-mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.pulse-mission-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.85rem;
+}
+
+.pulse-mission-card header {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.pulse-mission-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+}
+
+.pulse-unclaimed {
+  margin-bottom: 0.5rem;
+}
+
+.pulse-horizon-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.pulse-horizon-row {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.pulse-horizon-lane {
+  position: relative;
+  height: 1.1rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.pulse-horizon-bar {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  background: var(--primary);
+  border-radius: 4px;
+}
+
+.pulse-horizon-bar.on {
+  background: var(--warning);
+}
+
+.pulse-ai-prose {
+  margin-top: 1rem;
+  max-width: 42rem;
+  color: var(--text-secondary);
+}
+
+.pulse-evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-1) var(--p-2);
+  margin-top: var(--p-2);
+  font-family: ui-monospace, monospace;
+  font-size: var(--p-fs-xs);
+}
+
+/*
+ * Evidence links inherited the global indigo link colour, which is close to
+ * unreadable on the dark Pulse surface. They are chips: quiet by default, accent
+ * on hover — footnote rank, never competing with the number they support.
+ */
+.pulse-evidence a {
+  color: var(--p-text-dim);
+  background: var(--p-surface-2);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-sm);
+  padding: 1px var(--p-1);
+  text-decoration: none;
+  transition: color var(--p-dur-fast) var(--p-ease),
+    border-color var(--p-dur-fast) var(--p-ease);
+}
+
+.pulse-evidence a:hover {
+  color: var(--p-acc-bright);
+  border-color: var(--p-acc);
+}
+
+/*
+ * Between the wide grid and the phone breakpoint, let the board scroll
+ * horizontally rather than crushing five columns. The old rule here pinned five
+ * fixed 220px columns below 1100px, which forced ~1100px of side-scroll on a
+ * phone — the opposite of responsive.
+ */
+@media (max-width: 1100px) and (min-width: 721px) {
+  .pulse-board {
+    grid-template-columns: repeat(5, minmax(200px, 1fr));
+    overflow-x: auto;
+  }
+}
+
+
+/* ==========================================================================
+   Signal hierarchy — the three ranks (see components/Instrument.js).
+   These replace the seven hand-rolled "bg-secondary + 1px border + 8px radius"
+   boxes that made every metric look equally important.
+   ========================================================================== */
+
+.pulse-inst {
+  margin: 0 0 var(--p-3);
+}
+
+.pulse-inst-label {
+  font-size: var(--p-fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--p-track-caps);
+  color: var(--p-text-mute);
+  margin: 0 0 var(--p-1);
+}
+
+/* Rank 1 — the sentence. No box: it should read as a statement, not a widget. */
+.pulse-inst-headline {
+  font-size: var(--p-fs-lg);
+  line-height: var(--p-lh-tight);
+  font-weight: 650;
+  color: var(--p-text);
+  letter-spacing: -0.01em;
+  margin-bottom: var(--p-4);
+  max-width: 54rem;
+}
+
+.pulse-inst-headline .pulse-inst-body > span {
+  display: block;
+  margin-top: var(--p-2);
+  font-size: var(--p-fs-sm);
+  font-weight: 500;
+  color: var(--p-text-dim);
+  letter-spacing: 0;
+}
+
+/* Rank 2 — a measured thing. */
+.pulse-inst-instrument {
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-md);
+  padding: var(--p-3) var(--p-4);
+  box-shadow: var(--p-e-1);
+}
+
+.pulse-inst-instrument .pulse-inst-body {
+  font-size: var(--p-fs-md);
+  font-weight: 600;
+  color: var(--p-text);
+}
+
+/* Rank 3 — quiet. Evidence, counts, and reasons we cannot compute something. */
+.pulse-inst-footnote {
+  font-size: var(--p-fs-sm);
+  color: var(--p-text-mute);
+  font-weight: 500;
+}
+
+.pulse-inst-evidence {
+  margin-top: var(--p-2);
+  font-size: var(--p-fs-xs);
+  color: var(--p-text-mute);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-1) var(--p-2);
+}
+
+/* Tone is for signal, not decoration. */
+.pulse-tone-ok { border-color: var(--p-acc); }
+.pulse-tone-warn { border-color: var(--p-warn); }
+.pulse-tone-danger { border-color: var(--p-danger); }
+.pulse-inst-headline.pulse-tone-danger { color: var(--p-text); }
+
+/* Degraded reads as a margin note, never as a measurement. */
+.pulse-degraded-note {
+  display: flex;
+  align-items: baseline;
+  gap: var(--p-2);
+  font-style: italic;
+}
+
+.pulse-degraded-mark {
+  flex: 0 0 auto;
+  width: 2px;
+  align-self: stretch;
+  min-height: 1rem;
+  border-radius: var(--p-r-full);
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--p-border-strong) 0 3px,
+    transparent 3px 6px
+  );
+}
+
+/* ==========================================================================
+   Skeletons
+   ========================================================================== */
+
+.pulse-skel {
+  display: block;
+  background: linear-gradient(
+    90deg,
+    var(--p-surface) 0%,
+    var(--p-surface-2) 40%,
+    var(--p-surface) 80%
+  );
+  background-size: 300% 100%;
+  animation: pulse-shimmer 1.4s var(--p-ease) infinite;
+}
+
+@keyframes pulse-shimmer {
+  0% { background-position: 120% 0; }
+  100% { background-position: -40% 0; }
+}
+
+.pulse-skel-inst {
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-2);
+}
+
+.pulse-skel-board {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  gap: var(--p-3);
+}
+
+.pulse-skel-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-2);
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-md);
+  padding: var(--p-3);
+}
+
+.pulse-skel-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-2);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ==========================================================================
+   Interaction — the module had no hover, focus, active or transition at all.
+   ========================================================================== */
+
+.pulse-card {
+  transition:
+    border-color var(--p-dur-fast) var(--p-ease),
+    box-shadow var(--p-dur-fast) var(--p-ease),
+    transform var(--p-dur-fast) var(--p-ease);
+}
+
+.pulse-card:hover {
+  border-color: var(--p-border-strong);
+  box-shadow: var(--p-e-2);
+  transform: translateY(-1px);
+}
+
+.pulse-card:active,
+.pulse-card.dragging {
+  cursor: grabbing;
+  opacity: 0.55;
+  transform: scale(0.99);
+}
+
+/* A card that just landed settles instead of appearing. */
+.pulse-card.landed {
+  animation: pulse-settle var(--p-dur-slow) var(--p-ease);
+}
+
+@keyframes pulse-settle {
+  0% { transform: translateY(-4px) scale(1.015); box-shadow: var(--p-e-3); }
+  100% { transform: none; box-shadow: none; }
+}
+
+.pulse-column {
+  transition: border-color var(--p-dur-fast) var(--p-ease),
+    background var(--p-dur-fast) var(--p-ease);
+}
+
+/* The board never showed you where a card would land. */
+.pulse-column.drop-target {
+  border-color: var(--p-acc);
+  background: var(--p-ok-dim);
+}
+
+.pulse-tabs button {
+  transition: color var(--p-dur-fast) var(--p-ease),
+    border-color var(--p-dur-fast) var(--p-ease),
+    background var(--p-dur-fast) var(--p-ease);
+}
+
+.pulse-tabs button:hover {
+  color: var(--p-text);
+  border-color: var(--p-border-strong);
+}
+
+.pulse-tabs button.on {
+  background: var(--p-ok-dim);
+  border-color: var(--p-acc);
+  color: var(--p-text);
+}
+
+/* ==========================================================================
+   Shell chrome
+   ========================================================================== */
+
+.pulse-subtitle {
+  margin: var(--p-1) 0 0;
+  font-size: var(--p-fs-sm);
+  color: var(--p-text-dim);
+}
+
+.pulse-back {
+  margin-bottom: var(--p-2);
+}
+
+.pulse-header-actions {
+  display: flex;
+  gap: var(--p-2);
+  flex-wrap: wrap;
+}
+
+/* Instruments sit side by side instead of stacking as four identical bars. */
+.pulse-inst-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: var(--p-3);
+  align-items: stretch;
+  margin-bottom: var(--p-4);
+}
+
+.pulse-inst-row > .pulse-inst {
+  margin-bottom: 0;
+}
+
+.pulse-evidence-chip {
+  font-family: ui-monospace, monospace;
+  font-size: var(--p-fs-xs);
+  color: var(--p-text-mute);
+  background: var(--p-surface-2);
+  border-radius: var(--p-r-sm);
+  padding: 0 var(--p-1);
+}
+
+/* ==========================================================================
+   The interrupt ring — an actual ring.
+   ========================================================================== */
+
+.pulse-ring-wrap {
+  display: flex;
+  align-items: center;
+  gap: var(--p-4);
+  flex-wrap: wrap;
+}
+
+.pulse-ring {
+  position: relative;
+  flex: 0 0 auto;
+  width: 92px;
+  height: 92px;
+}
+
+.pulse-ring-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pulse-ring-track { stroke: var(--p-surface-3); }
+.pulse-ring-planned { stroke: var(--p-acc); }
+.pulse-ring-reserved { stroke: var(--p-warn); }
+.pulse-ring-overflow { stroke: var(--p-danger); }
+
+/* One sweep on load — motion marking a state change, not decoration. */
+.pulse-ring-planned,
+.pulse-ring-reserved,
+.pulse-ring-overflow {
+  animation: pulse-ring-sweep var(--p-dur-slow) var(--p-ease) both;
+}
+
+@keyframes pulse-ring-sweep {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pulse-ring-centre {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.pulse-ring-centre strong {
+  font-size: var(--p-fs-lg);
+  line-height: 1;
+  color: var(--p-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.pulse-ring-centre span {
+  font-size: var(--p-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--p-track-caps);
+  color: var(--p-text-mute);
+  margin-top: 2px;
+}
+
+.pulse-ring-read {
+  flex: 1 1 11rem;
+  min-width: 0;
+}
+
+.pulse-ring-read p {
+  margin: 0;
+  font-size: var(--p-fs-md);
+  font-weight: 600;
+  color: var(--p-text);
+}
+
+/* ==========================================================================
+   Toast — was inline in the flow and pushed the whole board down.
+   ========================================================================== */
+
+.pulse-toast {
+  position: fixed;
+  right: var(--p-4);
+  bottom: var(--p-4);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  gap: var(--p-3);
+  max-width: min(26rem, calc(100vw - 2rem));
+  background: var(--p-surface-2);
+  border: 1px solid var(--p-danger);
+  border-radius: var(--p-r-md);
+  box-shadow: var(--p-e-3);
+  padding: var(--p-3) var(--p-4);
+  color: var(--p-text);
+  font-size: var(--p-fs-sm);
+  margin: 0;
+  animation: pulse-toast-in var(--p-dur) var(--p-ease);
+}
+
+@keyframes pulse-toast-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.pulse-toast-close {
+  background: none;
+  border: none;
+  color: var(--p-text-dim);
+  font-size: var(--p-fs-lg);
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 var(--p-1);
+}
+
+.pulse-toast-close:hover { color: var(--p-text); }
+
+/* ==========================================================================
+   Command Deck cards
+   ========================================================================== */
+
+.pulse-deck-headline {
+  font-size: var(--p-fs-md);
+  font-weight: 650;
+  color: var(--p-text);
+  margin: var(--p-2) 0 0;
+  line-height: var(--p-lh-tight);
+}
+
+.pulse-deck-line {
+  font-size: var(--p-fs-sm);
+  color: var(--p-text-dim);
+  margin: var(--p-1) 0 0;
+}
+
+.pulse-deck-card {
+  transition: border-color var(--p-dur-fast) var(--p-ease),
+    transform var(--p-dur-fast) var(--p-ease),
+    box-shadow var(--p-dur-fast) var(--p-ease);
+}
+
+.pulse-deck-card:hover {
+  border-color: var(--p-acc);
+  transform: translateY(-2px);
+  box-shadow: var(--p-e-2);
+}
+
+/* ==========================================================================
+   Andon — a red cord has to be visible from across the room.
+   ========================================================================== */
+
+.pulse-andon-banner {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--p-3);
+  padding: var(--p-3) var(--p-4);
+  border-radius: var(--p-r-md);
+  border: 1px solid var(--p-border);
+  background: var(--p-surface);
+  margin-bottom: var(--p-3);
+}
+
+.pulse-andon-stop {
+  border-color: var(--p-danger);
+  background: var(--p-danger-dim);
+}
+
+.pulse-andon-watch {
+  border-color: var(--p-warn);
+  background: var(--p-warn-dim);
+}
+
+.pulse-andon-lamp {
+  flex: 0 0 auto;
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  border-radius: var(--p-r-full);
+  background: var(--p-warn);
+}
+
+.pulse-andon-stop .pulse-andon-lamp {
+  background: var(--p-danger);
+  animation: pulse-lamp 2s var(--p-ease) infinite;
+}
+
+/* The only looping animation in Pulse, and it marks a stop condition. */
+@keyframes pulse-lamp {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.55); }
+  60% { box-shadow: 0 0 0 7px rgba(239, 68, 68, 0); }
+}
+
+.pulse-andon-body { flex: 1 1 auto; min-width: 0; }
+
+.pulse-andon-body h4 {
+  margin: 0 0 var(--p-1);
+  font-size: var(--p-fs-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: var(--p-track-caps);
+  color: var(--p-text-mute);
+}
+
+.pulse-andon-body p {
+  margin: 0;
+  font-size: var(--p-fs-md);
+  font-weight: 600;
+  color: var(--p-text);
+}
+
+/* ==========================================================================
+   Constellation
+   ========================================================================== */
+
+.pulse-constellation {
+  margin: 0 0 var(--p-5);
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-lg);
+  padding: var(--p-4) var(--p-3) var(--p-3);
+}
+
+.pulse-constellation svg {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  display: block;
+}
+
+.pulse-con-axis,
+.pulse-con-ground {
+  stroke: var(--p-border);
+  stroke-width: 1;
+}
+
+.pulse-con-ground { stroke-dasharray: 3 5; }
+
+.pulse-con-axis-label,
+.pulse-con-key,
+.pulse-con-unknown {
+  fill: var(--p-text-mute);
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.pulse-con-key {
+  fill: var(--p-text-dim);
+  font-weight: 700;
+  font-family: ui-monospace, monospace;
+}
+
+.pulse-con-unknown { font-size: 10px; font-style: italic; }
+
+.pulse-con-tether {
+  stroke: var(--p-border-strong);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.pulse-con-body {
+  stroke: var(--p-bg);
+  stroke-width: 2;
+  transition: transform var(--p-dur) var(--p-ease);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.pulse-con-node { cursor: pointer; }
+.pulse-con-node:focus { outline: none; }
+.pulse-con-node.on .pulse-con-body { transform: scale(1.08); }
+.pulse-con-node:focus-visible .pulse-con-body { stroke: var(--p-acc); stroke-width: 3; }
+
+.pulse-con-count {
+  fill: #06231a;
+  font-size: 13px;
+  font-weight: 800;
+  pointer-events: none;
+}
+
+.pulse-con-halo { fill: none; stroke-width: 2; }
+.pulse-con-halo.stop { stroke: var(--p-danger); }
+.pulse-con-halo.watch { stroke: var(--p-warn); stroke-dasharray: 4 4; }
+
+.pulse-con-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-2) var(--p-4);
+  align-items: center;
+  margin-top: var(--p-2);
+  font-size: var(--p-fs-xs);
+  color: var(--p-text-mute);
+}
+
+.pulse-con-legend span { display: inline-flex; align-items: center; gap: var(--p-1); }
+
+.pulse-con-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--p-r-full);
+  display: inline-block;
+}
+
+.pulse-con-legend-sep { margin-left: auto; }
+
+/* ==========================================================================
+   Shortcut sheet
+   ========================================================================== */
+
+.pulse-sheet {
+  background: var(--p-surface-2);
+  border: 1px solid var(--p-border-strong);
+  border-radius: var(--p-r-md);
+  padding: var(--p-3) var(--p-4);
+  margin-bottom: var(--p-3);
+  box-shadow: var(--p-e-2);
+}
+
+.pulse-sheet-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--p-2);
+}
+
+.pulse-sheet-head h4 {
+  margin: 0;
+  font-size: var(--p-fs-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--p-track-caps);
+  color: var(--p-text-mute);
+}
+
+.pulse-sheet-head button {
+  background: none;
+  border: none;
+  color: var(--p-text-dim);
+  font-size: var(--p-fs-lg);
+  line-height: 1;
+  cursor: pointer;
+}
+
+.pulse-sheet-rows {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--p-1) var(--p-4);
+  margin: 0;
+}
+
+.pulse-sheet-row {
+  display: flex;
+  gap: var(--p-2);
+  align-items: baseline;
+}
+
+.pulse-sheet-row dt { flex: 0 0 auto; display: flex; gap: 2px; }
+.pulse-sheet-row dd { margin: 0; font-size: var(--p-fs-sm); color: var(--p-text-dim); }
+
+kbd {
+  font-family: ui-monospace, monospace;
+  font-size: var(--p-fs-xs);
+  background: var(--p-surface-3);
+  border: 1px solid var(--p-border-strong);
+  border-bottom-width: 2px;
+  border-radius: var(--p-r-sm);
+  padding: 1px 5px;
+  color: var(--p-text);
+}
+
+/* ==========================================================================
+   Horizon — a timeline with an actual axis.
+   ========================================================================== */
+
+.pulse-horizon-chart {
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-md);
+  padding: var(--p-3);
+}
+
+.pulse-horizon-axis {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: var(--p-3);
+  align-items: center;
+}
+
+.pulse-horizon-axis-lane {
+  position: relative;
+  height: 1.25rem;
+}
+
+.pulse-horizon-tick {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: var(--p-fs-xs);
+  color: var(--p-text-mute);
+  white-space: nowrap;
+}
+
+.pulse-horizon-grid {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--p-border);
+}
+
+.pulse-horizon-now {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--p-sky);
+  z-index: 2;
+}
+
+.pulse-horizon-now-label {
+  position: absolute;
+  transform: translateX(-50%);
+  font-size: var(--p-fs-xs);
+  color: var(--p-sky);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pulse-horizon-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--p-fs-sm);
+  color: var(--p-text-dim);
+}
+
+.pulse-horizon-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--p-2);
+  overflow: hidden;
+}
+
+.pulse-horizon-dates {
+  font-size: var(--p-fs-xs);
+  color: var(--p-bg);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Chips + drag handles
+   ========================================================================== */
+
+.pulse-chip-more {
+  background: none;
+  border: 1px dashed var(--p-border-strong);
+  border-radius: var(--p-r-sm);
+  color: var(--p-text-mute);
+  font-size: var(--p-fs-xs);
+  padding: 1px var(--p-1);
+  cursor: pointer;
+}
+
+.pulse-chip-more:hover { color: var(--p-acc-bright); border-color: var(--p-acc); }
+
+.pulse-card-handle { touch-action: none; }
+
+.pulse-card.dragging-overlay {
+  box-shadow: var(--p-e-3);
+  border-color: var(--p-acc);
+  transform: rotate(1.5deg);
+  cursor: grabbing;
+}
+
+/* ==========================================================================
+   Responsive — the module had ONE media query and it made phones worse
+   (it forced the 5 columns to a fixed 220px each = 1100px of side-scroll).
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .pulse-inst-row { grid-template-columns: 1fr; }
+
+  .pulse-ring-wrap { gap: var(--p-3); }
+
+  .pulse-horizon-axis,
+  .pulse-horizon-row {
+    grid-template-columns: 7rem 1fr;
+    gap: var(--p-2);
+  }
+
+  .pulse-con-legend-sep { margin-left: 0; flex-basis: 100%; }
+}
+
+@media (max-width: 720px) {
+  /* One column at a time beats 1100px of horizontal scrolling. */
+  .pulse-board,
+  .pulse-skel-board {
+    grid-template-columns: 1fr;
+    overflow-x: visible;
+  }
+
+  .pulse-column { min-height: auto; }
+
+  .pulse-deck-grid,
+  .pulse-mission-grid,
+  .pulse-brief-list,
+  .pulse-sheet-rows {
+    grid-template-columns: 1fr;
+  }
+
+  .pulse-line-bands { flex-wrap: wrap; }
+
+  .pulse-horizon-axis,
+  .pulse-horizon-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pulse-horizon-name { white-space: normal; }
+
+  .pulse-header-actions { width: 100%; }
+
+  .pulse-toast {
+    left: var(--p-3);
+    right: var(--p-3);
+    max-width: none;
+  }
+
+  .pulse-inst-headline { font-size: var(--p-fs-md); }
+}
+
+/* ==========================================================================
+   M19 Lenses — the control the board used to tell people to use.
+   ========================================================================== */
+
+.pulse-lensbar {
+  margin-bottom: var(--p-4);
+}
+
+.pulse-lensbar-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--p-2);
+  align-items: center;
+}
+
+.pulse-lensbar select,
+.pulse-lensbar input[type='search'] {
+  background: var(--p-surface);
+  color: var(--p-text);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-sm);
+  padding: 0.4rem 0.6rem;
+  font-size: var(--p-fs-sm);
+  font-family: inherit;
+}
+
+.pulse-lensbar select:hover,
+.pulse-lensbar input[type='search']:hover {
+  border-color: var(--p-border-strong);
+}
+
+.pulse-lensbar-search {
+  display: flex;
+  gap: var(--p-2);
+  align-items: center;
+}
+
+.pulse-lensbar-search input[type='search'] {
+  min-width: 14rem;
+}
+
+/*
+ * The count is footnote rank but must never be missable: it is the only thing
+ * telling the user that every number below describes a slice.
+ */
+.pulse-lensbar-count {
+  margin: var(--p-2) 0 0;
+  font-size: var(--p-fs-sm);
+  color: var(--p-text-dim);
+}
+
+.pulse-lensbar-count strong {
+  color: var(--p-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.pulse-lensbar-count code {
+  font-family: ui-monospace, monospace;
+  font-size: var(--p-fs-xs);
+  background: var(--p-surface-2);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-sm);
+  padding: 1px var(--p-1);
+  color: var(--p-acc-bright);
+}
+
+@media (max-width: 720px) {
+  .pulse-lensbar-controls,
+  .pulse-lensbar-search {
+    width: 100%;
+  }
+
+  .pulse-lensbar-search input[type='search'] {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .pulse-lensbar select {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   M20 The Wait
+   ========================================================================== */
+
+.pulse-wait-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--p-3);
+  margin-bottom: var(--p-4);
+}
+
+.pulse-wait-grid > .pulse-inst { margin-bottom: 0; }
+
+.pulse-wait-user {
+  display: block;
+  font-size: var(--p-fs-lg);
+  font-weight: 650;
+  color: var(--p-text);
+  line-height: var(--p-lh-tight);
+}
+
+.pulse-wait-meta {
+  display: block;
+  margin-top: var(--p-1);
+  font-size: var(--p-fs-sm);
+  font-weight: 500;
+  color: var(--p-text-dim);
+}
+
+.pulse-standoff {
+  display: block;
+  margin-bottom: var(--p-2);
+}
+
+.pulse-standoff:last-child { margin-bottom: 0; }
+
+@media (max-width: 720px) {
+  .pulse-wait-grid { grid-template-columns: 1fr; }
+}
+
+/* ==========================================================================
+   M21 Landing — the sentence is the product, the band is decoration.
+   ========================================================================== */
+
+.pulse-landing-band {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: var(--p-2);
+  height: 0.5rem;
+}
+
+.pulse-landing-p50,
+.pulse-landing-p85 {
+  width: 3px;
+  height: 0.5rem;
+  border-radius: 1px;
+  background: var(--p-acc);
+  flex: 0 0 auto;
+}
+
+.pulse-landing-p85 { background: var(--p-warn); }
+
+/* The span between P50 and P85 IS the uncertainty — showing it as width is the
+   whole reason this is a band and not a date. */
+.pulse-landing-span {
+  flex: 1 1 auto;
+  height: 3px;
+  background: linear-gradient(to right, var(--p-acc), var(--p-warn));
+  opacity: 0.85;
+}
+
+.pulse-landing-legend {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--p-1);
+  font-size: var(--p-fs-xs);
+  font-weight: 500;
+  color: var(--p-text-mute);
+}
+
+.pulse-landing-legend strong {
+  color: var(--p-text-dim);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Toast tone: a failure must be noticed; an explanation must not shout. */
+.pulse-toast-info {
+  border-color: var(--p-sky);
+}
+
+.pulse-toast-error {
+  border-color: var(--p-danger);
+}
+
+/* ==========================================================================
+   M22 Replay — the scrubber
+   ========================================================================== */
+
+.pulse-replay {
+  margin-bottom: var(--p-4);
+  padding: var(--p-3);
+  border: 1px solid var(--p-border);
+  border-radius: var(--p-r-md);
+  background: var(--p-surface);
+}
+
+/* Rewound is a mode, not a detail — it must be obvious the board is historical. */
+.pulse-replay.rewound {
+  border-color: var(--p-sky);
+  background: linear-gradient(to bottom, rgba(61, 191, 185, 0.08), transparent);
+}
+
+.pulse-replay-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--p-3);
+  flex-wrap: wrap;
+}
+
+.pulse-replay-label {
+  flex: 0 0 auto;
+  min-width: 11rem;
+  font-size: var(--p-fs-sm);
+  font-weight: 650;
+  color: var(--p-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.pulse-replay input[type='range'] {
+  flex: 1 1 14rem;
+  accent-color: var(--p-sky);
+  cursor: grab;
+}
+
+.pulse-replay input[type='range']:active { cursor: grabbing; }
+
+.pulse-replay-range-note {
+  margin: var(--p-1) 0 0;
+  font-size: var(--p-fs-xs);
+  color: var(--p-text-mute);
+}
+
+.pulse-replay .pulse-inst { margin-top: var(--p-3); margin-bottom: 0; }
+
+.pulse-replay-change {
+  display: block;
+  margin-top: var(--p-2);
+  font-size: var(--p-fs-sm);
+  font-weight: 500;
+  color: var(--p-text-dim);
+}
+
+@media (max-width: 720px) {
+  .pulse-replay-label { min-width: 0; flex: 1 1 100%; }
+}
+
+/* ==========================================================================
+   M23 — a locked surface is a sales surface, not an error.
+   ========================================================================== */
+
+.pulse-locked {
+  border: 1px solid var(--p-border-strong);
+  border-radius: var(--p-r-lg);
+  background: linear-gradient(to bottom, var(--p-surface-2), var(--p-surface));
+  padding: var(--p-5);
+  margin-bottom: var(--p-4);
+  max-width: 46rem;
+}
+
+.pulse-locked h3 {
+  margin: 0 0 var(--p-2);
+  font-size: var(--p-fs-xl);
+  font-weight: 700;
+  color: var(--p-text);
+  letter-spacing: -0.01em;
+}
+
+.pulse-locked-what {
+  margin: 0 0 var(--p-2);
+  font-size: var(--p-fs-md);
+  color: var(--p-text-dim);
+  line-height: var(--p-lh);
+}
+
+.pulse-locked-why {
+  margin: 0 0 var(--p-4);
+  font-size: var(--p-fs-md);
+  font-weight: 600;
+  color: var(--p-acc-bright);
+}
+
+.pulse-locked-foot {
+  margin: var(--p-3) 0 0;
+  font-size: var(--p-fs-sm);
+  color: var(--p-text-mute);
+}
+
+/* ==========================================================================
+   Tooltips — one delegated layer (components/Tooltip.js).
+   ========================================================================== */
+
+.pulse-tip {
+  position: fixed;
+  z-index: 60;
+  transform: translate(-50%, -100%);
+  max-width: 22rem;
+  background: var(--p-surface-3);
+  color: var(--p-text);
+  border: 1px solid var(--p-border-strong);
+  border-radius: var(--p-r-sm);
+  box-shadow: var(--p-e-2);
+  padding: var(--p-2) var(--p-3);
+  font-size: var(--p-fs-sm);
+  font-weight: 500;
+  line-height: 1.35;
+  pointer-events: none; /* never sits between the cursor and the control */
+  animation: pulse-tip-in var(--p-dur-fast) var(--p-ease);
+}
+
+/* Flipped below the control when there is no room above. */
+.pulse-tip-below {
+  transform: translate(-50%, 0);
+}
+
+@keyframes pulse-tip-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.pulse-tip::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  margin-left: -5px;
+  border: 5px solid transparent;
+}
+
+.pulse-tip-above::after {
+  top: 100%;
+  border-top-color: var(--p-border-strong);
+}
+
+.pulse-tip-below::after {
+  bottom: 100%;
+  border-bottom-color: var(--p-border-strong);
+}
+
+/* ==========================================================================
+   M24 — in-context help
+   ========================================================================== */
+
+.pulse-help-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  background: rgba(3, 7, 18, 0.72);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--p-5) var(--p-4);
+  overflow-y: auto;
+}
+
+.pulse-help-panel {
+  width: min(64rem, 100%);
+  background: var(--p-surface);
+  border: 1px solid var(--p-border-strong);
+  border-radius: var(--p-r-lg);
+  box-shadow: var(--p-e-3);
+}
+
+.pulse-help-panel-head {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--p-3);
+  padding: var(--p-4);
+  border-bottom: 1px solid var(--p-border);
+  background: var(--p-surface);
+  border-radius: var(--p-r-lg) var(--p-r-lg) 0 0;
+}
+
+.pulse-help-panel-head h2 {
+  margin: 0;
+  font-size: var(--p-fs-lg);
+  font-weight: 700;
+  color: var(--p-text);
+}
+
+.pulse-help-panel-body {
+  padding: var(--p-4);
+}
+
+.pulse-cal-week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.4rem;
+  margin: 0.75rem 0 1rem;
+}
+
+.pulse-cal-day {
+  background: var(--p-surface);
+  border: 1px solid var(--p-border);
+  border-radius: 10px;
+  padding: 0.45rem;
+  min-width: 0;
+}
+
+.pulse-cal-day.today {
+  border-color: var(--p-acc);
+}
+
+.pulse-cal-day-label {
+  font-size: 0.75rem;
+  color: var(--p-text-dim);
+  margin-bottom: 0.35rem;
+}
+
+.pulse-cal-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  background: var(--p-surface-3);
+  border-radius: 6px;
+  padding: 0.3rem 0.35rem;
+  margin-bottom: 0.3rem;
+  font-size: 0.75rem;
+  color: var(--p-text);
+}
+
+.pulse-cal-block strong {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.pulse-cal-conflicts,
+.pulse-cal-sources {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pulse-cal-sources li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+@media (max-width: 720px) {
+  .pulse-cal-week {
+    grid-template-columns: 1fr;
+  }
+}
