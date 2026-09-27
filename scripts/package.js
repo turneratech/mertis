@@ -37,6 +37,35 @@ const INCLUDE = [
   'LICENSE', 'LICENSING.md', 'README.md', 'CHANGELOG.md', 'CONTRIBUTING.md'
 ];
 
+/**
+ * Documents that are ours, not the customer's. One list, because the packager
+ * and scripts/publish.js were each keeping their own and had already drifted:
+ * the public tree excluded the agent caches while every customer bundle shipped
+ * them, complete with their pointers into our private notes directory.
+ *
+ *  - the caches describe how we work, and point into the private notes
+ *  - the lawyer brief carries the registered office, the CIN and our preferred
+ *    answer to every open licensing question
+ *  - HISTORY is the migrated transcript index; the pulse-* files are
+ *    pre-implementation planning, superseded by the code
+ *
+ * LICENSE and LICENSING.md are not here: those are what a customer is owed.
+ */
+const INTERNAL_DOCS = [
+  /(^|\/)docs\/PROJECT_CACHE\.md$/,
+  /(^|\/)docs\/PULSE_CACHE\.md$/,
+  /(^|\/)docs\/SITE_MAP\.md$/,
+  /(^|\/)docs\/HISTORY\.md$/,
+  /(^|\/)docs\/legal(\/|$)/,
+  /(^|\/)docs\/mertis-pulse-/,
+  /(^|\/)docs\/Claude outputs(\/|$)/,
+  /(^|\/)docs\/Turneratech_Commit_Message_Guidelines\.pdf$/,
+  /(^|\/)CLAUDE\.md$/,
+  /^\.cursor(\/|$)/,
+  /^\.claude(\/|$)/,
+  /^build\/offerings(\/|$)/
+];
+
 const DENY = [
   // Stale minified forks of auth.js, bugs.js and license.js sit beside their
   // sources, are gitignored, and still contain pre-fix logic — the register
@@ -51,7 +80,7 @@ const DENY = [
   /(^|\/)server\/data(\/|$)/,   // a live install's rows
   /(^|\/)server\/tests(\/|$)/,  // fixtures, not product
   /(^|\/)imgs\/screenshots(\/|$)/,
-  /(^|\/)docs\/Claude outputs(\/|$)/,
+  ...INTERNAL_DOCS,
   /\.env($|\.)/,                // never ship anyone's credentials
   /\.log$/
 ];
@@ -225,10 +254,26 @@ bundles — \`SHA256SUMS\` proves it, and \`VER-PKG-002\` checks it on every run
 `;
 };
 
+// The developer's own .env.example runs in development and pre-seeds
+// admin/admin123, which is what a developer wants and the opposite of what an
+// install wants: copied verbatim it hands every bundle the same password and
+// skips the setup wizard, so the first account is never the godmode owner.
+// Neutralised here rather than in the source file, which stays convenient.
+const NL = String.fromCharCode(10);
+const INSTALL_SAFE = [
+  [/^NODE_ENV=development\s*$/m, 'NODE_ENV=production'],
+  [/^MERTIS_DEV_DEFAULTS=true\s*$/m, [
+    '# Never enable on an install you rely on: it pre-seeds admin/admin123 and',
+    '# skips the setup wizard, so your first account is not the godmode owner.',
+    '# MERTIS_DEV_DEFAULTS=true'
+  ].join(NL)]
+];
+
 const envExample = (manifest) => {
-  const base = fs.existsSync(path.join(root, '.env.example'))
+  let base = fs.existsSync(path.join(root, '.env.example'))
     ? fs.readFileSync(path.join(root, '.env.example'), 'utf8')
     : '';
+  for (const [pattern, replacement] of INSTALL_SAFE) base = base.replace(pattern, replacement);
   const preset = Object.entries(manifest.env).map(([k, v]) => `${k}=${v}`).join('\n');
   return `# Mertis — ${manifest.label} preset
 #
@@ -238,7 +283,8 @@ const envExample = (manifest) => {
 ${preset}
 
 # ---------------------------------------------------------------------------
-# Everything below is the standard example, unchanged.
+# Everything below is the standard example, with the development-only
+# NODE_ENV and dev-defaults lines made safe for an install.
 # ---------------------------------------------------------------------------
 
 ${base}`;
@@ -322,4 +368,5 @@ if (require.main === module) {
   }
 }
 
-module.exports = { collectPayload, buildOne, readEnforcement, MANIFEST_DIR };
+module.exports = {
+  INTERNAL_DOCS, collectPayload, buildOne, readEnforcement, MANIFEST_DIR };

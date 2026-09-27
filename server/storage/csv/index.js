@@ -7,7 +7,7 @@ const { v4: uuidv4 } = require('uuid');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
-// getDataDir() rather than the constant: MANTIS_DATA_DIR may be set after this
+// getDataDir() rather than the constant: MERTIS_DATA_DIR may be set after this
 // module is required (integration tests), so the path must resolve lazily.
 const { readCSV, writeCSV, fileExists, getDataDir } = require('./csvHandler');
 const { buildStatusChange } = require('../../utils/pulseTransition');
@@ -1020,7 +1020,7 @@ const initialize = async () => {
   await migratePulseCsvFiles();
   const users = await readCSV(FILES.USERS);
   const allowDevDefaults =
-    process.env.NODE_ENV === 'development' || process.env.MANTIS_DEV_DEFAULTS === 'true';
+    process.env.NODE_ENV === 'development' || process.env.MERTIS_DEV_DEFAULTS === 'true';
 
   if (allowDevDefaults && users.length === 0) {
     const hashedPassword = await bcrypt.hash('admin123', 10);
@@ -1033,7 +1033,7 @@ const initialize = async () => {
     });
     console.log('[CSV] Dev default admin created (username: admin, password: admin123)');
   } else if (users.length === 0) {
-    console.log('[CSV] No users yet — complete first-run setup at /mantis/setup');
+    console.log('[CSV] No users yet — complete first-run setup at /mertis/setup');
   }
 
   const projects = await readCSV(FILES.PROJECTS);

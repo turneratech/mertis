@@ -8,7 +8,20 @@ Mertis is source-available under the Business Source License 1.1 — see
 
 ## [Unreleased]
 
+## [2.1.0] — 2026-09-28
+
+Renamed the product, opened the source, and closed the ways an internal document
+could leave with a release.
+
 ### Added
+- **Calendar on My Pulse.** A person connects up to five published iCal links
+  (Outlook publish, Google secret address, Apple) and sees the next seven days of
+  busy time beside the work that is due, so a due date can be read against a real
+  day. Any signed-in user can look up when a colleague is busy — that is the
+  scheduling point — but meeting titles, feed URLs and due-date conflicts stay
+  with the owner. Links must be public https: private and link-local addresses are
+  refused before the request and again after DNS, redirects are not followed, and
+  the fetch is capped at 8 seconds and 1 MB. Busy time is never written onto a bug.
 - **`npm run package`** — builds one release folder per offering from a single
   source tree (`npm run package -- --all`, or `--offering=team`). Each folder
   carries the same application payload and differs only in its `.env.example`
@@ -18,12 +31,34 @@ Mertis is source-available under the Business Source License 1.1 — see
   more than the app delivers. No licence key is ever packaged: keys are issued
   per customer and bound to one machine.
 
+- **Data export.** `GET /api/export` returns the whole instance as JSON or one
+  project as CSV, admin only, through the storage abstraction on every backend.
+  There is no licence gate on it: getting your data out is not a paid feature.
+- **`scripts/publish.js`** — generates the public source tree instead of forking
+  the private one, one squashed commit per release, and refuses to write a tree
+  containing a customer name, a private key, a cloud credential, a real licence
+  key or a pointer into our internal notes.
+
+### Changed
+- **The product is now Mertis, not Mantis.** 491 occurrences across 93 files,
+  including `LICENSE`. Every `MANTIS_*` environment variable keeps working:
+  `server/config/envAliases.js` maps the ten of them both ways and warns once per
+  process, so no install in the field breaks on upgrade. Rename them in your
+  `.env` at your convenience.
+- The client subdirectory deployment path moved from `/mantis` to `/mertis`, and
+  the API is mounted at both `/api/*` and `/mertis/api/*`.
+
 ### Fixed
 - **Tier limits could be exceeded by simultaneous creates.** The limit check counted
   existing rows and then let the request insert, so requests that arrived together all
   read the same count and all committed — twenty parallel creates at 249 of 250 bugs
   produced 269. A double-click was enough; no tampering was needed. Users, projects and
   bugs now hold a lock from the count until the response is sent.
+- **An admin could not open a bug on a CSV install.** Bug detail fetched activity
+  row ids with a raw MySQL query, and CSV has no pool, so it returned 500. CSV is
+  the default and the wizard's first account is the godmode owner, which means on
+  a default install the owner could not open a single bug. Comment delete had the
+  same shape and now answers 501 with a reason.
 
 ### Security
 - **No customer name can ship in the product.** A waived instance fell back to a
@@ -31,6 +66,17 @@ Mertis is source-available under the Business Source License 1.1 — see
   filename. All three are removed: the only source of an organisation name is the
   operator's own `MERTIS_ORGANIZATION_NAME`, and a test greps the whole server tree on
   every run to keep it that way.
+- **No release bundle can carry an internal document.** Bundles were shipping the
+  counsel brief — registered office, company identifiers and our position on every
+  open licensing question — along with the agent caches and their pointers into
+  our internal notes. One list now decides what is ours, shared by the packager
+  and the publisher, and the tests fail a bundle that breaks it.
+- **No bundle preset seeds a default administrator.** The generated
+  `.env.example` copied the developer's own file, so every bundle of every tier
+  told its installer to run in development with dev defaults on: the same
+  `admin`/`admin123` in every install, no setup wizard, and a first account that
+  was not the godmode owner. The preset now ships production defaults with the
+  setting commented and the reason stated.
 
 ## [2.0.0] — 2026-09-23
 

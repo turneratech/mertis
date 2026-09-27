@@ -34,7 +34,7 @@ services:
     #   MERTIS_VERSION=$(node -p "require('./package.json').version") \n    #     docker compose build && docker save mertis:$MERTIS_VERSION | gzip > mertis-$MERTIS_VERSION.tar.gz
     # Defaults to the released version; override with MERTIS_VERSION so the tag
     # follows package.json rather than drifting from it.
-    image: mertis:${MERTIS_VERSION:-2.0.0}
+    image: mertis:${MERTIS_VERSION:-2.1.0}
     restart: unless-stopped
     depends_on:
       db:

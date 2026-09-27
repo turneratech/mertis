@@ -66,6 +66,67 @@ describe('release packaging [VER-PKG]', () => {
     assert.ok(payload.length > 50, 'payload looks empty — the include list is probably wrong');
   });
 
+  it('VER-PKG-006: counsel correspondence and internal history stay out of a bundle', () => {
+    const payload = collectPayload();
+    const forbidden = [
+      [/(^|\/)docs\/legal\//, 'the lawyer brief — registered office, CIN and our preferred answers'],
+      [/(^|\/)docs\/HISTORY\.md$/, 'the migrated transcript index'],
+      [/Commit_Message_Guidelines/, 'an internal process document'],
+      [/(^|\/)docs\/PROJECT_CACHE\.md$/, 'an agent cache pointing into the private notes'],
+      [/(^|\/)docs\/PULSE_CACHE\.md$/, 'an agent cache pointing into the private notes'],
+      [/(^|\/)docs\/SITE_MAP\.md$/, 'an agent cache pointing into the private notes']
+    ];
+    for (const rel of payload) {
+      for (const [pattern, what] of forbidden) {
+        assert.ok(!pattern.test(rel), `packaged ${what}: ${rel}`);
+      }
+    }
+    assert.ok(payload.some((rel) => rel === 'LICENSE'), 'LICENSE must still ship — it is what a customer is owed');
+    assert.ok(payload.some((rel) => rel === 'LICENSING.md'), 'LICENSING.md must still ship');
+  });
+
+  it('VER-PKG-007: a bundle preset never pre-seeds admin/admin123 or runs in development', () => {
+    const out = fs.mkdtempSync(path.join(os.tmpdir(), 'mertis-pkg-env-'));
+    try {
+      const payload = collectPayload();
+      for (const tier of tiers) {
+        const dest = buildOne(tier, payload, out).dest || path.join(out, tier);
+        const preset = fs.readFileSync(path.join(dest, '.env.example'), 'utf8');
+        assert.ok(!/^MERTIS_DEV_DEFAULTS=true\s*$/m.test(preset),
+          `${tier} preset enables dev defaults: the wizard is skipped and admin/admin123 is seeded`);
+        assert.ok(!/^NODE_ENV=development\s*$/m.test(preset), `${tier} preset runs in development`);
+        assert.ok(/MERTIS_DEV_DEFAULTS/.test(preset),
+          `${tier} preset dropped the setting entirely — it should stay, commented, with the reason`);
+      }
+    } finally {
+      fs.rmSync(out, { recursive: true, force: true });
+    }
+  });
+
+  it('VER-PKG-008: the private notes never reach a bundle or the public tree', () => {
+    // Assembled, not written out: this file ships in the public tree, and
+    // publish.js refuses any tree that names the private notes directory.
+    const NOTES = ['priv', '_docs'].join('');
+    const inside = new RegExp(`(^|/)${NOTES}(/|$)`);
+
+    for (const rel of collectPayload()) {
+      assert.ok(!inside.test(rel), `packaged the private notes: ${rel}`);
+    }
+
+    // The publisher starts from this same payload and adds only the tests and
+    // .github, so a directory absent from the payload cannot reach the public
+    // tree. This holds while the include list stays a list rather than a sweep
+    // of the working tree.
+    const { INTERNAL_DOCS } = require('../../../scripts/package');
+    assert.ok(Array.isArray(INTERNAL_DOCS) && INTERNAL_DOCS.length > 0, 'the internal list is empty');
+
+    const onDisk = fs.existsSync(path.join(__dirname, '../../..', NOTES));
+    if (onDisk) {
+      assert.deepEqual(collectPayload().filter((rel) => rel.startsWith(NOTES)), [],
+        'the private notes are in the working tree and reached the payload');
+    }
+  });
+
   it('VER-PKG-005: the payload is tracked source, not whatever is on disk', () => {
     const { execFileSync } = require('child_process');
     let tracked;

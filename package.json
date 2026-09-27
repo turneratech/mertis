@@ -1,6 +1,6 @@
 {
   "name": "mertis",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Mertis — Multi-Project Bug Tracking with MySQL/CSV dual storage",
   "main": "server/index.js",
   "scripts": {

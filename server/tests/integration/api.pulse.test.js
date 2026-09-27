@@ -654,6 +654,58 @@ describe('API pulse', () => {
     assert.equal(JSON.stringify(bars).includes('"bugId"'), false);
   });
 
+  it('VER-PULSE-CAL: my own week comes back with days and no calendar connected', async () => {
+    const calendar = await request(baseUrl, 'GET', '/api/pulse/calendar', { token });
+    assert.equal(calendar.status, 200);
+    const data = calendar.data.data;
+    assert.equal(data.self, true);
+    assert.equal(data.username, 'admin');
+    assert.equal(data.window.timeZone, 'UTC');
+    assert.equal(data.days.length, 7);
+    assert.deepEqual(data.sources, []);
+    assert.deepEqual(data.blocks, []);
+  });
+
+  it('VER-PULSE-CAL: an unknown person, an unknown zone and a backwards window are refused', async () => {
+    const stranger = await request(baseUrl, 'GET', '/api/pulse/calendar?user=nobody', { token });
+    assert.equal(stranger.status, 404);
+
+    const zone = await request(baseUrl, 'GET', '/api/pulse/calendar?timeZone=Mars/Olympus', { token });
+    assert.equal(zone.status, 400);
+    assert.equal(zone.data.error, 'Unknown time zone');
+
+    const window = await request(
+      baseUrl,
+      'GET',
+      '/api/pulse/calendar?from=2026-09-28T00:00:00.000Z&to=2026-09-21T00:00:00.000Z',
+      { token }
+    );
+    assert.equal(window.status, 400);
+    assert.equal(window.data.error, 'Calendar window is invalid');
+  });
+
+  it('VER-PULSE-CAL: a link that is not a public https calendar never reaches the network', async () => {
+    const plain = await request(baseUrl, 'POST', '/api/pulse/calendar/sources', {
+      token,
+      body: { url: 'http://calendar.example.com/a.ics' }
+    });
+    assert.equal(plain.status, 400);
+    assert.equal(plain.data.error, 'Calendar links must be https');
+
+    const internal = await request(baseUrl, 'POST', '/api/pulse/calendar/sources', {
+      token,
+      body: { url: 'https://169.254.169.254/latest/meta-data/' }
+    });
+    assert.equal(internal.status, 400);
+    assert.equal(internal.data.error, 'That calendar link is not a public address');
+  });
+
+  it('VER-PULSE-CAL: removing a link nobody owns is a 404, not a silent success', async () => {
+    const gone = await request(baseUrl, 'DELETE', '/api/pulse/calendar/sources/no-such-id', { token });
+    assert.equal(gone.status, 404);
+    assert.equal(gone.data.error, 'Calendar link not found');
+  });
+
   it('VER-PULSE-AI: Community brief keeps clauses and hides AI prose', async () => {
     const projects = await request(baseUrl, 'GET', '/api/projects', { token });
     const projectKey = projects.data[0].key;
