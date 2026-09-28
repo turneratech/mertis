@@ -9,6 +9,7 @@
 </p>
 
 <p align="center">
+  <a href="#download">Download</a> •
   <a href="#features">Features</a> •
   <a href="#screenshots">Screenshots</a> •
   <a href="#quick-start">Quick Start</a> •
@@ -19,7 +20,8 @@
 </p>
 
 <p align="center">
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/version-2.0.0-blue.svg" alt="Version"></a>
+  <a href="https://github.com/turneratech/mertis/releases/latest"><img src="https://img.shields.io/badge/download-2.1.0-1ecc77.svg" alt="Download"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/changelog-2.1.0-blue.svg" alt="Changelog"></a>
   <img src="https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen.svg" alt="Node">
   <img src="https://img.shields.io/badge/react-18.x-61dafb.svg" alt="React">
   <img src="https://img.shields.io/badge/MySQL-8.x-orange.svg" alt="MySQL">
@@ -31,9 +33,13 @@
 
 ## Overview
 
-**Mertis** is an enterprise-ready bug tracker for software teams. It ships as a **downloadable, licensable** package you host on your own infrastructure (EC2, on-prem, Docker, or local dev).
+**Mertis** is a bug tracker for software teams that you run yourself. It installs on your own
+infrastructure — a VPS, on-prem hardware, Docker, or a laptop — and keeps your defect history in
+your own database, behind your own network.
 
-Turnera Tech runs this as **three services**: (1) marketing at [mantis.turneratech.com](https://mantis.turneratech.com/), (2) the [licence server](https://license.turneratech.com) for registration and JWT keys (separate repo, not this tree), and (3) **this app** — customer self-hosted Mertis (BYO database and file storage).
+The licence is activated once and verified **offline** from then on: take the machine off the
+internet, restart, and Mertis comes up on the same tier. Community Edition is free in production
+within its limits, with no expiry and no card.
 
 - **Flexible database** — MySQL, PostgreSQL/Supabase, or CSV (evaluation / air-gapped demo)
 - **Flexible file storage** — local disk, S3, Azure Blob, SharePoint, Supabase Storage
@@ -43,6 +49,27 @@ Turnera Tech runs this as **three services**: (1) marketing at [mantis.turnerate
 
 Built with React 18, Express, and a storage abstraction layer so application code stays backend-agnostic.
 
+
+---
+
+## Download
+
+Install from a release tarball. That is the supported path and it needs no git:
+
+```bash
+curl -LO https://github.com/turneratech/mertis/releases/latest/download/mertis-community-2.1.0.tar.gz
+curl -LO https://github.com/turneratech/mertis/releases/latest/download/mertis-community-2.1.0.tar.gz.sha256
+sha256sum -c mertis-community-2.1.0.tar.gz.sha256
+tar -xzf mertis-community-2.1.0.tar.gz
+cd mertis-community-2.1.0
+```
+
+Follow `QUICKSTART.md` inside the bundle, or [Quick Start](#quick-start) below. Register at
+[mertis.turneratech.com](https://mertis.turneratech.com/) for a free Community key, delivered
+by email.
+
+Clone this repository instead if you intend to read or change the code: it carries the tests,
+which the release bundle does not.
 
 ---
 
@@ -137,7 +164,7 @@ See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for Supabase, S3, Azure, and webhoo
 ```bash
 git clone https://github.com/turneratech/mertis.git
 cd mertis
-cp .env.example .env
+cp .env.example server/.env
 npm run install-all
 cd hybrid-storage && npm install && cd ..
 ```
@@ -178,7 +205,7 @@ npm run dev
 ### Option D — Docker (fastest path to a running instance)
 
 ```bash
-cp .env.example .env
+cp .env.example server/.env
 # set JWT_SECRET, DB_PASSWORD and DB_ROOT_PASSWORD
 docker compose up -d
 # app at http://localhost:5000/mertis
@@ -194,23 +221,28 @@ you must re-activate the licence.
 |---|---|
 | **Dev UI** | [http://localhost:3000/mertis](http://localhost:3000/mertis) |
 | **API** | [http://localhost:5000/api/health](http://localhost:5000/api/health) |
-| **Default login** | `admin` / `admin123` |
+| **First account** | Created by the setup wizard on first run — it becomes the instance owner |
 
 > The React app is served under **`/mertis`** (see `client/package.json` → `homepage`).  
 > In dev, the client proxies `/mertis/api` to the Express server on port **5000**.
 >
 > **Local UI + remote EC2 API:** copy `client/.env.example` → `client/.env.local`, set `REACT_APP_API_TARGET` (e.g. `http://your-server:5000`), restart the React dev server, and **do not** start local Express. Full steps are in that example file and in `client/src/setupProxy.js`. There is no `server.py` — EC2 runs `server/index.js`.
 
-### 4. First-run setup (CSV mode)
+### 4. First-run setup
 
-After logging in as **admin**, the **Setup Wizard** walks through:
+A fresh install has no accounts. Open the app and the **Setup Wizard** walks through:
 
 1. Welcome  
 2. Database provider (optional upgrade from CSV)  
 3. File storage (local / S3 / Azure)  
 4. Licence key — paste the free Community key emailed to you after registering
-   at [mantis.turneratech.com](https://mantis.turneratech.com/)  
+   at [mertis.turneratech.com](https://mertis.turneratech.com/)  
 5. Finish  
+
+The account you create in the wizard is the instance owner (`godmode`). There is exactly one
+per instance; promoting someone else transfers it. Setting `MERTIS_DEV_DEFAULTS=true` seeds
+`admin` / `admin123` and skips the wizard — for local development only, never an install you
+rely on.
 
 Ongoing changes: **Admin → Deployment** (`/deployment`).
 
@@ -226,7 +258,7 @@ NODE_ENV=production npm start
 
 ## Configuration
 
-Copy `.env.example` to `.env` and adjust:
+Copy `.env.example` to `server/.env` and adjust:
 
 ```env
 # Server
@@ -311,7 +343,7 @@ curl http://localhost:5000/api/health
 # Example: login
 curl -X POST http://localhost:5000/api/auth/login \
   -H "Content-Type: application/json" \
-  -d '{"username":"admin","password":"admin123"}'
+  -d '{"username":"your-user","password":"your-password"}'
 ```
 
 ---
@@ -375,7 +407,7 @@ Agency, Enterprise, Enterprise Plus and Managed Cloud are contract tiers —
 contact <sales@turneratech.com>.
 
 **Getting a Community key:** register at
-[mantis.turneratech.com](https://mantis.turneratech.com/). A key (`TT-XXXX-XXXX-XXXX-XXXX`)
+[mertis.turneratech.com](https://mertis.turneratech.com/). A key (`TT-XXXX-XXXX-XXXX-XXXX`)
 is emailed to you. Paste it into the setup wizard, or later into
 **Admin → Deployment → License**. This server exchanges it once with
 [license.turneratech.com](https://license.turneratech.com) for a signed licence,
@@ -392,8 +424,8 @@ locally and never contacts the licence server.
 
 | Priority | Action |
 |----------|--------|
-| Critical | Change default `admin` / `admin123` immediately |
-| Critical | Set unique `JWT_SECRET` in production |
+| Critical | Set a unique `JWT_SECRET` before exposing the instance |
+| Critical | Leave `MERTIS_DEV_DEFAULTS` unset outside development — it seeds a known password |
 | High | Use HTTPS (TLS termination at Nginx / load balancer) |
 | High | Restrict database and S3 credentials via env vars, not commits |
 | Medium | Keep dependencies updated (`npm audit`) |
@@ -445,5 +477,5 @@ Business Source License 1.1 — see [LICENSE](LICENSE) and [LICENSING.md](LICENS
 <p align="center">
   <img src="./imgs/logo_tiny.png" alt="Mertis" width="32">
   <br>
-  Made with care by <a href="https://turneratech.com">TurneraTech</a>
+  Made with care by <a href="https://turneratech.com">Turnera Tech</a>
 </p>
