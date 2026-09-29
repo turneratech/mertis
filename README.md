@@ -20,8 +20,8 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/turneratech/mertis/releases/latest"><img src="https://img.shields.io/badge/download-2.1.0-1ecc77.svg" alt="Download"></a>
-  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/changelog-2.1.0-blue.svg" alt="Changelog"></a>
+  <a href="https://github.com/turneratech/mertis/releases/latest"><img src="https://img.shields.io/badge/download-2.2.0-1ecc77.svg" alt="Download"></a>
+  <a href="CHANGELOG.md"><img src="https://img.shields.io/badge/changelog-2.2.0-blue.svg" alt="Changelog"></a>
   <img src="https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen.svg" alt="Node">
   <img src="https://img.shields.io/badge/react-18.x-61dafb.svg" alt="React">
   <img src="https://img.shields.io/badge/MySQL-8.x-orange.svg" alt="MySQL">
@@ -57,11 +57,11 @@ Built with React 18, Express, and a storage abstraction layer so application cod
 Install from a release tarball. That is the supported path and it needs no git:
 
 ```bash
-curl -LO https://github.com/turneratech/mertis/releases/latest/download/mertis-community-2.1.0.tar.gz
-curl -LO https://github.com/turneratech/mertis/releases/latest/download/mertis-community-2.1.0.tar.gz.sha256
-sha256sum -c mertis-community-2.1.0.tar.gz.sha256
-tar -xzf mertis-community-2.1.0.tar.gz
-cd mertis-community-2.1.0
+curl -LO https://github.com/turneratech/mertis/releases/latest/download/mertis-community-2.2.0.tar.gz
+curl -LO https://github.com/turneratech/mertis/releases/latest/download/mertis-community-2.2.0.tar.gz.sha256
+sha256sum -c mertis-community-2.2.0.tar.gz.sha256
+tar -xzf mertis-community-2.2.0.tar.gz
+cd mertis-community-2.2.0
 ```
 
 Follow `QUICKSTART.md` inside the bundle, or [Quick Start](#quick-start) below. Register at
