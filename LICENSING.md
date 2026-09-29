@@ -137,4 +137,4 @@ Copies previously supplied under MIT remain usable under their MIT terms.
 | Licence keys and activation | <licensing@turneratech.com> |
 | Sales and quotes | <sales@turneratech.com> |
 | Technical support | <support@turneratech.com> |
-| Free Community key | [turneratech.com](https://turneratech.com/mantis/) |
+| Free Community key | [mertis.turneratech.com](https://mertis.turneratech.com/) |
