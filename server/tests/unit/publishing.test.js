@@ -37,7 +37,16 @@ describe('public tree guards [VER-PUB]', () => {
     ['an Azure account key', [`AccountKey=${'A'.repeat(40)}`], ['AccountKey=xxx']],
     ['an OpenAI key', [j('sk-', 'a'.repeat(32))], [j('ask-', 'a'.repeat(32)), 'sk-short']],
     ['a licence key', [REAL_LICENCE], ['TT-XXXX-XXXX-XXXX-XXXX', 'TT-ABCD-EFGH-IJKL-MNOP']],
-    ['a pointer into the private notes', [`see ../${NOTES}/launch-todos.md`], ['deprivation_docsearch']]
+    ['a pointer into the private notes', [`see ../${NOTES}/launch-todos.md`], ['deprivation_docsearch']],
+    ['an assistant attribution trailer',
+      [j('Co-authored', '-by: A N Other <a@example.com>')],
+      ['co authored by the team', 'authored-by nobody']],
+    ['an assistant sandbox path',
+      [j('/home/', 'clau', 'de/mertis-backend/attachments.js')],
+      [j('/home/', 'clau', 'dia/notes.md'), '/home/ubuntu/mertis']],
+    ['an assistant account address',
+      [j('cursor', 'agent@', 'cursor.com')],
+      ['cursor-agent.md', 'agent@example.com']]
   ];
 
   it('VER-PUB-001: every forbidden pattern matches what it is for, and not what it is not', () => {

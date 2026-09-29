@@ -118,7 +118,8 @@ npm install multer uuid --save
 nano /var/www/html/mertis/server/routes/attachments.js
 ```
 
-Copy the contents of `/home/claude/mertis-backend/attachments.js` into this file.
+Copy in the attachments route from your Mertis source checkout,
+`server/routes/attachments.js`.
 
 ---
 

@@ -72,7 +72,12 @@ const FORBIDDEN = [
   [/\bsk-[A-Za-z0-9]{20,}/, 'an OpenAI key'],
   // A real key, not the documented placeholders TT-XXXX-... or TT-ABCD-EFGH-...
   [/TT-(?!XXXX|ABCD)[A-Z0-9]{4}-(?!XXXX|EFGH)[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}/, 'a licence key'],
-  [name(String.raw`\bpriv`, String.raw`_docs\b`), 'a pointer into the private notes']
+  [name(String.raw`\bpriv`, String.raw`_docs\b`), 'a pointer into the private notes'],
+  // An assistant's trailer or scratch path in a customer-facing file says who
+  // typed it and where, which is nobody's business and sometimes a real path.
+  [name('(^|[^a-z])co-', 'authored-by'), 'an assistant attribution trailer'],
+  [name('/home/', 'clau', 'de/'), 'an assistant sandbox path'],
+  [name('cursor', 'agent@'), 'an assistant account address']
 ];
 
 const TEXT = /\.(js|jsx|ts|tsx|json|md|yml|yaml|sql|sh|css|html|txt|example|env)$/i;
