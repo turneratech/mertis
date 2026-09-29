@@ -46,8 +46,9 @@ licence actually permits, and whether the customer-facing pages say the same thi
 ### Notes
 - These terms apply to 2.2.0 onward. Copies of 2.1.0 and earlier keep the terms
   they were distributed with; nothing here is applied retroactively.
-- The reserved-capability list is the licence's own; where the shipped build
-  gates less than the licence reserves, the licence governs.
+- The grant was reviewed and signed off by counsel before release. The
+  reserved-capability list is the licence's own; where the shipped build gates
+  less than the licence reserves, the licence governs.
 
 ## [2.1.0] — 2026-09-28
 
