@@ -51,15 +51,34 @@ const INCLUDE = [
  *
  * LICENSE and LICENSING.md are not here: those are what a customer is owed.
  */
+/**
+ * The documents under docs/ that a customer is meant to read. Everything else
+ * under docs/ is internal by default - see PUBLIC_DOCS_ONLY below.
+ */
+const PUBLIC_DOCS = [
+  /(^|\/)docs\/DEPLOYMENT\.md$/,
+  /(^|\/)docs\/INTEGRATION-GUIDE\.md$/,
+  /(^|\/)docs\/VERIFICATION\.md$/,
+  /(^|\/)docs\/overallStruct\.png$/
+];
+
+/**
+ * docs/ is deny-by-default. The old list named each internal document, so a new
+ * one at a path nobody had added - docs/pricing-strategy.md, docs/counsel/ -
+ * shipped until someone noticed. Inverted, the failure mode is a customer
+ * document missing from a bundle, which a release check catches, rather than an
+ * internal document reaching a customer, which nothing undoes.
+ *
+ * A predicate, not a RegExp: both consumers call `.test(rel)`, so an object
+ * with a `test` method drops into the same list.
+ */
+const PUBLIC_DOCS_ONLY = {
+  test: (rel) =>
+    /(^|\/)docs\//.test(rel) && !PUBLIC_DOCS.some((ok) => ok.test(rel))
+};
+
 const INTERNAL_DOCS = [
-  /(^|\/)docs\/PROJECT_CACHE\.md$/,
-  /(^|\/)docs\/PULSE_CACHE\.md$/,
-  /(^|\/)docs\/SITE_MAP\.md$/,
-  /(^|\/)docs\/HISTORY\.md$/,
-  /(^|\/)docs\/legal(\/|$)/,
-  /(^|\/)docs\/mertis-pulse-/,
-  /(^|\/)docs\/Claude outputs(\/|$)/,
-  /(^|\/)docs\/Turneratech_Commit_Message_Guidelines\.pdf$/,
+  PUBLIC_DOCS_ONLY,
   /(^|\/)CLAUDE\.md$/,
   /^\.cursor(\/|$)/,
   /^\.claude(\/|$)/,

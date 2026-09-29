@@ -8,6 +8,48 @@ Mertis is source-available under the Business Source License 1.1 — see
 
 ## [Unreleased]
 
+## [2.2.0] — 2026-10-01
+
+A licensing release. No application behaviour changes; what changes is what the
+licence actually permits, and whether the customer-facing pages say the same thing.
+
+### Changed
+- **Additional Use Grant rewritten.** The grant now reserves production
+  *capabilities* instead of forbidding source edits. It permits any number of
+  instances for your own internal operations, defines what an Instance, User
+  Account, Project and Bug are for counting, allows employees and contractors to
+  use an instance on your behalf, and states plainly that providing Mertis as a
+  hosted or managed service needs a commercial licence. Counts remain 5 accounts,
+  3 projects and 250 bugs per instance.
+- **Expiry is now a written permission, not just product behaviour.** When a
+  commercial licence lapses or its scope shrinks, records created while it was in
+  effect stay readable, editable and exportable even over the limits; new records
+  follow the Community limit for their own record type.
+- **Change Date is a literal date.** `2030-10-01`, replacing "four years from the
+  date each version is first published". BSL's own four-year anniversary rule still
+  applies to each version independently.
+- **`LICENSING.md` and the README licensing section reconciled with `LICENSE`.**
+  The tier table is now labelled as a description of the supplied build rather than
+  as the legal terms, instance counting is explained the same way in both, and
+  "free ... forever" is replaced by a description of this version's permission.
+
+### Removed
+- **The blanket anti-circumvention paragraph.** Forbidding modification of the
+  licence checks conflicted with BSL 1.1's own grant of modification and
+  redistribution rights, and with the Licensor's covenant not to restrict them. The
+  grant's scope now applies whether the checks are present or not: modifying a build
+  does not enlarge what you may do in production with it.
+- **The "1 webhook" Community claim** from the customer-facing limits table. The
+  field exists in `server/config/features.js` but no create path enforces it, so
+  advertising it as a limit was not accurate.
+
+### Notes
+- These terms apply to 2.2.0 onward. Copies of 2.1.0 and earlier keep the terms
+  they were distributed with; nothing here is applied retroactively.
+- The grant was reviewed before release. The reserved-capability list is the
+  licence's own; where the shipped build gates less than the licence reserves,
+  the licence governs.
+
 ## [2.1.0] — 2026-09-28
 
 Renamed the product, opened the source, and closed the ways an internal document

@@ -393,8 +393,16 @@ Detailed guide: **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**
 ## Licensing
 
 Mertis is source-available under the **Business Source License 1.1** — see
-[LICENSING.md](LICENSING.md). Community Edition is free for production use within
-its limits; anything beyond needs a commercial licence.
+[LICENSE](LICENSE) for the terms and [LICENSING.md](LICENSING.md) for a plain-English
+walkthrough. Community Edition is free for production use within the Additional Use
+Grant: any number of instances, for your own internal operations, using the Community
+capabilities, with no more than 5 user accounts, 3 projects and 250 bugs **per
+instance**. Anything beyond that — more records, a reserved capability, or hosting
+Mertis for third parties — needs a commercial licence.
+
+The table below describes what each **supplied build** offers. It is a product
+summary, not the legal terms; the grant in the `LICENSE` of the version you run is
+what binds you.
 
 | Tier | Users | Projects | Bugs | Highlights |
 |------|-------|----------|------|------------|
@@ -402,6 +410,10 @@ its limits; anything beyond needs a commercial licence.
 | **Team** | 25 | 15 | 5,000 | S3 storage, REST API, custom fields |
 | **Professional** | 500 | ∞ | ∞ | AI insights, advanced reporting, scheduled email, all storage backends |
 | **Business** | 2,000 | ∞ | ∞ | Multi-instance, audit logs, advanced permissions |
+
+Counts are per instance — one production deployment sharing one database or CSV
+storage directory. Extra processes or a failover replica of that deployment are not
+extra instances.
 
 Agency, Enterprise, Enterprise Plus and Managed Cloud are contract tiers —
 contact <sales@turneratech.com>.

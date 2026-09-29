@@ -12,18 +12,107 @@ Licensor:             Turnera Tech Private Limited
 Licensed Work:        Mertis
                       The Licensed Work is (c) 2026 Turnera Tech Private Limited
 
-Additional Use Grant: You may make production use of the Licensed Work,
-                      provided that your use does not exceed the Community
-                      Edition limits (5 users, 3 projects and 250 bugs per
-                      instance), OR that you hold a valid commercial license
-                      from the Licensor.
+Additional Use Grant: You may make production use of the Licensed Work on any
+                      number of Instances solely for your own internal
+                      operations, using only the Community Capabilities defined
+                      below, provided that each Instance contains no more than
+                      five User Accounts, three Projects and 250 Bugs, subject
+                      to the continued-use permission below. These conditions
+                      apply together.
 
-                      You may not remove, disable or circumvent the license
-                      key validation or feature gating in the Licensed Work,
-                      nor distribute a modified version in which they have
-                      been removed, disabled or circumvented.
+                      "Community Capabilities" means core bug tracking, project
+                      management including the Pulse boards, basic GitHub
+                      integration, and data export, together with the account
+                      administration, authentication, storage, backup,
+                      restoration and other supporting operations needed to use
+                      those capabilities. It excludes the reserved production
+                      capabilities listed below, except to the limited extent
+                      expressly permitted by the continued-use paragraph. This
+                      definition and the reserved list are fixed for this
+                      version, not by a future pricing page or a change to a
+                      feature flag.
 
-Change Date:          Four years from the date each version is first published.
+                      Reserved production capabilities are AI insights,
+                      duplicate detection and other AI analysis; reporting
+                      beyond the included Pulse views and Friday brief; custom
+                      fields and workflows; third-party REST API integrations
+                      other than the included basic GitHub integration and data
+                      export; scheduled email reports; advanced GitHub
+                      integration; S3 attachment storage; SAML single sign-on;
+                      audit logging and audit-log export; advanced permissions;
+                      SLA management; private LLM integration; child-licence
+                      issuance; and the supplied white-label and custom-branding
+                      management features. This reservation of supplied branding
+                      features does not prohibit modifying names, logos or
+                      styles in a build otherwise used within this grant,
+                      subject to required notices and applicable trademark
+                      rights. Internal API calls needed for Community
+                      Capabilities are not reserved third-party REST API
+                      integrations.
+
+                      Your employees and contractors may use an Instance on your
+                      behalf for your internal operations, within the same
+                      account limits. This grant does not permit you to provide
+                      the Licensed Work as a hosted or managed service to third
+                      parties, whether paid or free, or operate Instances for
+                      clients' own operations. Such production use, use of
+                      reserved capabilities, or use beyond the numerical limits
+                      requires a separate commercial licence authorising that
+                      scope of use. Mere redistribution remains governed by the
+                      Terms below.
+
+                      An "Instance" is one production deployment using one
+                      logical application datastore, including a SQL database or
+                      a CSV storage directory. Application processes, servers or
+                      containers sharing that datastore form one Instance.
+                      Replicas used solely for the same deployment's replication
+                      or failover do not form additional Instances. A separately
+                      operated production deployment using an independent
+                      datastore is a separate Instance.
+
+                      A "User Account" is each account record that exists in the
+                      Instance, including administrator and service accounts,
+                      whether or not recently used. A "Project" is each project
+                      record that exists in the Instance. A "Bug" is each bug
+                      record that exists in the Instance, regardless of status.
+                      A record ceases to count when deleted from the operational
+                      datastore. Counts are totals across the Instance, not per
+                      person, organisation, project or application process.
+
+                      After a commercial licence expires or its authorised scope
+                      decreases, you may continue to retain, view, edit, export
+                      and delete records lawfully created while that
+                      authorisation was in effect, including associated data in
+                      reserved features, even if the Instance exceeds the
+                      numerical limits. This limited permission also applies to
+                      existing client data on formerly authorised hosted
+                      Instances; it does not permit onboarding new hosted
+                      customers or using other reserved capabilities to generate
+                      new results. You may create further User Accounts,
+                      Projects or Bugs for your own internal operations only
+                      where the total for the corresponding record type
+                      immediately after creation does not exceed the limit
+                      above. An excess in another record type does not prevent
+                      such creation. This permission does not authorise use of
+                      separately licensed software or services.
+
+                      A disaster-recovery standby maintained solely for
+                      replication, backup or recovery testing, and serving no
+                      live operational workload, does not count as a production
+                      Instance. When it takes over the same workload in place of
+                      the failed deployment, it replaces that Instance.
+                      Simultaneous independent production operation counts as
+                      another Instance.
+
+                      These permissions apply equally to the original Licensed
+                      Work and modified versions. Changing or removing a
+                      technical check does not expand the scope of production
+                      use permitted by this grant. This grant imposes no
+                      additional conditions on the rights to copy, modify,
+                      redistribute or make non-production use provided by the
+                      Terms below, or on rights available under applicable law.
+
+Change Date:          2030-10-01
 
 Change License:       Apache License, Version 2.0
 
