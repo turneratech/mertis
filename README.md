@@ -416,7 +416,7 @@ storage directory. Extra processes or a failover replica of that deployment are 
 extra instances.
 
 Agency, Enterprise, Enterprise Plus and Managed Cloud are contract tiers —
-contact <sales@turneratech.com>.
+contact <support@turneratech.com>.
 
 **Getting a Community key:** register at
 [mertis.turneratech.com](https://mertis.turneratech.com/). A key (`TT-XXXX-XXXX-XXXX-XXXX`)

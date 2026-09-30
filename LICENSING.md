@@ -75,7 +75,7 @@ the first is allowed within the grant subject to the required notices and to
 trademark law, the second is reserved.
 
 See the tier table in [README.md](README.md#licensing) or contact
-<sales@turneratech.com>.
+<support@turneratech.com>.
 
 ## What is non-production
 
@@ -135,6 +135,6 @@ Copies previously supplied under MIT remain usable under their MIT terms.
 | | |
 |---|---|
 | Licence keys and activation | <licensing@turneratech.com> |
-| Sales and quotes | <sales@turneratech.com> |
+| Sales and quotes | <support@turneratech.com> |
 | Technical support | <support@turneratech.com> |
 | Free Community key | [mertis.turneratech.com](https://mertis.turneratech.com/) |
